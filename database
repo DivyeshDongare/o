@@ -1,0 +1,139 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class student {
+public:
+    // Member variables
+    string name , rollno , class_name , divsion , dob , blood_group , address , phone_no , dl_no ;
+    static int studentCount;
+    // Default constructor
+    student()
+    {
+        name = rollno = class_name = divsion = dob = blood_group = address = phone_no = dl_no = "";
+    }
+
+    // Parameterized constructor
+    student(string n , string r , string c , string d , string b , string bg , string a , string p , string dl )
+    {
+        name = n;
+        rollno = r;
+        class_name = c;
+        divsion = d;
+        dob = b;
+        blood_group = bg;
+        address = a;
+        phone_no = p;
+        dl_no = dl;
+    }
+
+    // Copy constructor
+    student(const student& s)
+    {
+        name = s.name;
+        rollno = s.rollno;
+        class_name = s.class_name;
+        divsion = s.divsion;
+        dob = s.dob;
+        blood_group = s.blood_group;
+        address = s.address;
+        phone_no = s.phone_no;
+        dl_no = s.dl_no; 
+    }
+
+    // Destructor
+    ~student() {}
+
+    // Member functions to access and modify data
+    void inputData();
+    void displayData();
+
+    // Static member function to count students
+    static int countStudents();
+
+    // Friend function to compare two students
+    friend bool compareStudents(const student& s1, const student& s2);
+};
+
+// Static member variable
+int student::studentCount = 0;
+
+// Member function definitions
+void student::inputData() {
+    cout<<"Enter the student details:"<<endl;
+    cout<<"Name: ";
+    getline(cin , name);
+    cout<<endl;
+    cout<<"Roll no: ";
+    getline(cin , rollno);
+    cout<<"Class: ";
+    getline(cin , class_name);
+    cout<<"Division: ";
+    getline(cin , divsion);
+    cout<<"Date of Birth: ";
+    getline(cin , dob);
+    cout<<"Blood Group: ";
+    getline(cin , blood_group);
+    cout<<"Address: ";
+    getline(cin , address);
+    cout<<"Phone number: ";
+    getline(cin , phone_no);
+    cout<<"Driving licence no: ";
+    getline(cin , dl_no);
+}
+
+void student::displayData() {
+    cout<<"Name: "<<name<<endl;
+    cout<<"rollno: "<<rollno<<endl;
+    cout<<"class: "<<class_name<<endl;
+    cout<<"division: "<<divsion<<endl;
+    cout<<"date of birth: "<<dob<<endl;
+    cout<<"blood group: "<<blood_group<<endl;
+    cout<<"address: "<<address<<endl;
+    cout<<"phoe number: "<<phone_no<<endl;
+    cout<<"driving licence number: "<<dl_no<<endl;
+}
+
+int student::countStudents() {
+    return studentCount;
+}
+
+bool compareStudents(const student& s1, const student& s2) {
+    return s1.rollno < s2.rollno;
+}
+
+int main() {
+    vector<student> students;
+    student stud;
+    int numStudents;
+
+    try {
+        cout << "Enter the number of students: ";
+        cin >> numStudents;
+
+        if (cin.fail()) {
+            throw runtime_error("Invalid input for number of students");
+        }
+
+        for (int i = 0; i < numStudents; ++i) {
+            student student;
+            student.inputData();
+            students.push_back(student);
+            student::studentCount++;
+        }
+
+        cout << "\nStudent Information:\n";
+        for (const student&  student: students) {
+            stud.displayData();
+            cout << endl;
+        }
+
+        cout << "Total number of students: " << student::countStudents() << endl;
+    } catch (const exception& e) {
+        cerr << "Error: " << e.what() << endl;
+    }
+
+    return 0;
+}
