@@ -1,0 +1,69 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+struct personalrecords
+{
+    string name;
+    string dob;
+    string phonenumber;
+};
+
+void dsplayrecord(const personalrecords& obj)
+{
+    cout << "Name: " << obj.name << endl;
+    cout << "DOB (DD/MM/YYYY)" << obj.dob << endl;
+    cout << "Phone number:" << obj.phonenumber << endl;
+}
+
+bool comparename (const personalrecords& a , const personalrecords& b) 
+{
+    return a.name < b.name;
+}
+
+int main()
+{
+    vector<personalrecords> record;
+    int n;
+    cout << "Enter the number of records: ";
+    cin >> n;
+    cin.ignore();
+
+    for(int i = 0 ; i < n ; i++)
+    {
+        personalrecords rd;
+        cout << "Enter details for " << (i+1) << " record" << endl;
+        cout << "Name: ";
+        getline(cin , rd.name);
+        cout << "DOB (DD/MM/YYYY): ";
+        getline(cin , rd.dob);
+        cout << "Phone number: ";
+        getline(cin , rd.phonenumber);
+        record.push_back(rd);
+    }
+    sort (record.begin() , record.end() , comparename);
+
+    string searchname;
+    cout << "Enter the name to search: ";
+    cin >> searchname;
+
+    vector<personalrecords> :: iterator it = find_if(record.begin() , record.end() , [searchname] (const personalrecords& rd)
+    {
+        return rd.name == searchname;
+    }
+    );
+
+    if(it != record.end())
+    {
+        cout << "Record found: \n";
+        cout << "Name: " << it -> name <<endl;
+        cout << "DOB: " << it -> dob <<endl;
+        cout << "Phone number: " << it -> phonenumber <<endl;
+    }
+    else
+    {
+        cout << "Match no found.";
+    }
+    return 0;
+}
