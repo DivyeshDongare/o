@@ -1,0 +1,30 @@
+#include<iostream>
+#include<map>
+#include<string>
+using namespace std;
+
+int main()
+{
+    map < string , int> statepopulation;
+    
+    statepopulation.insert( pair < string , int > ( "MAHARASHTRA" , 214));
+    statepopulation.insert( pair < string , int > ( "GUJARAT" , 24));
+    statepopulation.insert( make_pair ( "HARYANA" , 44));
+    statepopulation.insert( make_pair ( "TELANGANA" , 50));
+
+    string statename;
+    cout << "Enter state name in capital letters" << endl;
+    cout << "Enter a state name: ";
+    getline ( cin , statename);
+
+    map < string , int > :: iterator it = statepopulation.find (statename);
+    if ( it != statepopulation.end ())
+    {
+        cout << "The Population of " << statename << " is " << it -> second << " thosand." << endl;
+    }
+    else
+    {
+        cout << "State not found." << endl;
+    }
+    return 0;
+}
