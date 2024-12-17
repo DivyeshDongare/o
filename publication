@@ -1,0 +1,90 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Publications
+{
+    public:
+        string title;
+        float price;
+    
+    Publications(string title , float price)
+    {
+        this -> title = title;
+        this -> price = price;
+    }
+};
+
+class Book : public Publications
+{
+    public:
+        int pages;
+    
+    Book (string title , float price , int pages) : Publications(title , price)
+    {
+        this -> pages = pages;
+    }
+};
+
+class Tape : public Publications
+{
+    public:
+        float playtime;
+    
+    Tape (string title , float price , float playtime) : Publications( title , price)
+    {
+        this -> playtime = playtime;
+    }
+};
+
+int main()
+{
+    try
+    {
+        string title;
+        float price;
+        int pages;
+        float playtime;
+
+        cout << "\nEnter Book Details:\n";
+        cout << "Title: ";
+        getline ( cin , title);
+        cout << "Price: ";
+        cin >> price;
+        cout << "Pages: ";
+        cin >> pages;
+
+        Book book( title , price , pages);
+
+        cout << "\nEnter Tape Details:\n";
+        cout << "Title: ";
+        cin.ignore();
+        getline ( cin , title);
+        cout << "Price: ";
+        cin >> price;
+        cout << "Play Time: ";
+        cin >> playtime;
+
+        Tape tape( title , price , playtime);
+
+        cout << "\nBook details:\n";
+        cout << "Title: " << book.title << endl ;
+        cout << "Price: " << book.price << endl ;
+        cout << "Pages: " << book.pages << endl ;
+
+        cout << "\nTape Detil:\n";
+        cout << "Title: " << tape.title << endl ;
+        cout << "Price: " << tape.price << endl ;
+        cout << "Play Time: " << tape.playtime << endl ;
+
+     }
+    catch(const exception& e)
+    {
+        cout << "An error occured:" << e.what() << '\n';
+        Book book( " " , 0 , 0);
+        Tape tape( " " , 0 , 0);
+
+        cout << "\nErroe : All data members set to zero." << "\n";
+    }
+    
+}
