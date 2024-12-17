@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+
+template <typename T>
+void selectionsort( T arr[] , int n)
+{
+    int i , j , min ;
+    for( i = 0 ; i < n-1 ; i++)
+    {
+        min = i;
+        for( j = i+1 ; j < n ; j++)
+        {
+            if( arr[j] < arr[min])
+            {
+                min = j;
+            }
+        }
+        swap ( arr[min] , arr[i]);
+    }
+}
+
+int main()
+{
+    int intarr [] = { 64 , 32 , 12 , 11 , 15 };
+    int intsize = sizeof ( intarr ) / sizeof ( intarr [0] );
+
+    float floatarr [] = { 64.4 , 34.2 , 12.1 , 11.6 , 15.0 };
+    int floatsize = sizeof ( floatarr ) / sizeof ( floatarr [0] );
+
+    cout << "Integer array before sorting:\n";
+    for(int i = 0 ; i < intsize ; i++)
+    {
+        cout << intarr [i] << " "; 
+    }
+    cout << endl;
+
+    selectionsort( intarr , intsize );
+
+    cout << "Integer array after sorting:\n";
+    for(int i = 0 ; i < intsize ; i++)
+    {
+        cout << intarr [i] << " "; 
+    }
+    cout << endl;
+
+    cout << "Floating array before sorting:\n";
+    for(int i = 0 ; i < floatsize ; i++)
+    {
+        cout << floatarr [i] << " "; 
+    }
+    cout << endl;
+
+    selectionsort( floatarr , floatsize );
+
+    cout <<"Floating array after sorting:\n";
+    for(int i = 0 ; i < floatsize ; i++)
+    {
+        cout << floatarr [i] << " "; 
+    }
+    cout << endl;
+
+    return 0;
+}
