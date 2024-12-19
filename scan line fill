@@ -1,10 +1,10 @@
 // Program to Fill a Polygon Using Scan Line Fill Algorithm in C++.
 
-#include <conio.h>
+//#include <conio.h>
 #include <iostream.h>
 #include <graphics.h>
 #include <stdlib.h>
-#include<dos.h>
+//#include<dos.h>
 using namespace std;
 
 //Declaration of class point
